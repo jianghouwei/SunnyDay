@@ -1,0 +1,81 @@
+@CacheName: 指定缓存实例注解
+
+@CacheKeyMethod:缓存key生成注解
+
+---------------------------------读取-------------------------------------------
+
+@ReadThroughAssignCache(assignedKey = "SomePhatKey", namespace = "Echo", expiration = 3000): 读取指定key缓存
+
+@ReadThroughSingleCache(namespace = SINGLE_NS, expiration = 0):读取单个缓存
+
+@ReadThroughMultiCache(option = @ReadThroughMultiCacheOption(generateKeysFromResult = true)):读取多个缓存
+
+@ReadThroughMultiCacheOption(generateKeysFromResult = true) 读取多个缓存操作generateKeysFromResult 通过结果生成key
+
+ 
+
+---------------------------------更新-------------------------------------------
+
+@UpdateAssignCache(assignedKey = "SomePhatKey", namespace = "Echo", expiration = 3000): 指定key更新缓存
+
+@UpdateSingleCache(namespace = SINGLE_NS, expiration = 2): 更新单个缓存(namespace 命名空间, expiration 失效时间单位秒)
+
+@UpdateMultiCache(namespace = "Bravo", expiration = 300): 更新多个缓存
+
+ 
+
+---------------------------------失效-------------------------------------------
+
+@InvalidateAssignCache(assignedKey = "SomePhatKey", namespace = "Echo") : 指定key失效缓存
+
+@InvalidateSingleCache(namespace = SINGLE_NS):失效单个缓存
+
+@InvalidateMultiCache(namespace = "Delta") : 失效多个缓存
+
+ 
+
+---------------------------------参数-------------------------------------------
+
+@ParameterDataUpdateContent: 标记方法的参数作为更新内容。这个注解应结合Update*Cache注解使用
+
+@ParameterValueKeyProvider: 标记将方法的参数做为计算缓存key.如果方法被注解的对象标记CacheKeyMethod的方法将会用来生成缓存key否则调用toString()生成
+
+@ParameterValueKeyProvider(order=0) 属性表示如果多个参数做为key时需提供参数顺序
+
+与@ParameterValueKeyProvider类似的注解有:
+
+{
+
+  @ReturnValueKeyProvider: 返回值对象中计算key
+
+}
+
+---------------------------------泛型处理-------------------------------------------
+
+@BridgeMethodMappings({ @BridgeMethodMapping(methodName = "updateUser", 
+
+erasedParamTypes = { Object.class }, targetParamTypes = { AppUser.class }) }): 泛型桥接注解
+
+methodName : 指定方法
+
+erasedParamTypes : 擦除对象类型
+
+targetParamTypes : 目标转换类型
+
+ 
+
+ 
+
+---------------------------------计数器-------------------------------------------
+
+@InvalidateAssignCache  :在给的计算器上加1. 如果不存在则初始化为1
+
+@DecrementCounterInCache : 在给的计数器上减1
+
+ 
+
+@ReadCounterFromCache  :读取计数器
+
+@UpdateCounterFromCache : 更新计数器
+
+ 

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<!-- xmemcached -->
+	<bean id="xmemcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder">  
+		<constructor-arg>  
+			<list>  
+				<bean class="java.net.InetSocketAddress">  
+					<constructor-arg value="${memcached.server1.host}"/>  
+					<constructor-arg value="${memcached.server1.port}"/>  
+				</bean>  
+			</list>  
+		</constructor-arg>  
+		<property name="connectionPoolSize" value="5"/>  
+		<property name="commandFactory">  
+			<bean class="net.rubyeye.xmemcached.command.BinaryCommandFactory"/>  
+		</property>
+		<property name="sessionLocator" >  
+			<bean class="net.rubyeye.xmemcached.impl.KetamaMemcachedSessionLocator" />  
+		</property>  
+		<property name="transcoder">  
+			<bean class="net.rubyeye.xmemcached.transcoders.SerializingTranscoder" />  
+		</property>  
+	</bean> 
+	
+	<!-- 客户端  -->
+	<bean id="xmemcachedClient" factory-bean="xmemcachedClientBuilder" 
+		factory-method="build" destroy-method= "shutdown" />  
+	
+	<!-- xmemUserService -->
+	<bean id="xMemUserService" class="com.ibs.zj.mem.service.impl.XMemUserServiceImpl">
+		<property name="cacheClient" ref="xmemcachedClient"></property>
+	</bean>
+	
+	<!--
+		<bean name="xmemcachedClientBuilder" class="net.rubyeye.xmemcached.XMemcachedClientBuilder"
+			p:connectionPoolSize= "${memcached.connectionPoolSize}"  
+			p:failureMode= "${memcached.failureMode}">
+			<constructor-arg>
+				<list>  
+					<bean class= "java.net.InetSocketAddress" >  
+						<constructor-arg>  
+							<value>${memcached.server1.host} </value>  
+						</constructor-arg >  
+					</bean>
+				</list>
+			</constructor-arg>
+			<constructor-arg>
+				<list>  
+					<value>${memcached.server1.weight} </value>  
+				</list>
+			</constructor-arg>
+			<property name="commandFactory" >  
+				<bean  class="net.rubyeye.xmemcached.command.TextCommandFactory" />  
+			</property>  
+			<property name="sessionLocator" >  
+				<bean  class="net.rubyeye.xmemcached.impl.KetamaMemcachedSessionLocator" />  
+			</property>  
+			<property name="transcoder" >  
+				<bean  class="net.rubyeye.xmemcached.transcoders.SerializingTranscoder" />  
+			</property> 
+		</bean>
+		-->
+	
+	<!--
+		2.2 复杂一点儿的例子 
+		<bean name="memcachedClient" 
+				class="net.rubyeye.xmemcached.utils.XMemcachedClientFactoryBean"> 
+			<property name="servers"> 
+					<value>host1:port1 host2:port2 host3:port3</value> 
+			</property> 
+			<property name="weights"> 
+					<list> 
+							<value>1</value> 
+							<value>2</value> 
+							<value>3</value> 
+					</list> 
+			</property> 
+			<property name="sessionLocator"> 
+					<bean class="net.rubyeye.xmemcached.impl.KetamaMemcachedSessionLocator"></bean> 
+			</property> 
+			<property name="transcoder"> 
+					<bean class="net.rubyeye.xmemcached.transcoders.SerializingTranscoder" /> 
+			</property> 
+			<property name="bufferAllocator"> 
+					<bean class="net.rubyeye.xmemcached.buffer.SimpleBufferAllocator"></bean> 
+			</property> 
+		</bean> 
+		-->
+    
+</beans>

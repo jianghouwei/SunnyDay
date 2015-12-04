@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="  
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<!-- 定义缓存组件 -->
+	<bean id="spyMemcached" class="net.spy.memcached.spring.MemcachedClientFactoryBean" 
+		p:servers="${memcached.url}" 
+		p:protocol="BINARY" 
+		p:locatorType="ARRAY_MOD"
+		p:failureMode="Redistribute" p:transcoder-ref="serialTranscoder">
+		<property name="hashAlg">
+			<util:constant static-field="net.spy.memcached.DefaultHashAlgorithm.FNV1A_64_HASH" />
+		</property>
+	</bean>
+
+	<bean id="serialTranscoder" class="net.spy.memcached.transcoders.SerializingTranscoder" 
+		  p:compressionThreshold="2048" />
+		  
+	<bean id="spyUserService" class="com.ibs.zj.mem.service.impl.SpyUserServiceImpl">
+		<property name="mcmcacheClient" ref="spyMemcached"></property>
+	</bean>	  
+
+</beans>

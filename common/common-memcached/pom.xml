@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.sun.day</groupId>
+		<artifactId>common</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<artifactId>common-memcached</artifactId>
+	<name>memcached</name>
+	<description>memcached</description>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<xmemcached.version>2.0.0</xmemcached.version>
+		<xmemcached-provider.version>3.5.0</xmemcached-provider.version>
+		<simple-spring-memcached.version>3.6.0</simple-spring-memcached.version>
+		<memcached-java-client.version>3.0.2</memcached-java-client.version>
+		<spymemcached-provider.version>3.2.1</spymemcached-provider.version>
+		<spymemcached.version>2.11.7</spymemcached.version>
+		
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.whalin</groupId>
+			<artifactId>Memcached-Java-Client</artifactId>
+			<version>${memcached-java-client.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.spy</groupId>
+			<artifactId>spymemcached</artifactId>
+			<version>${spymemcached.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.googlecode.xmemcached</groupId>
+			<artifactId>xmemcached</artifactId>
+			<version>${xmemcached.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.simple-spring-memcached</groupId>
+			<artifactId>xmemcached-provider</artifactId>
+			<version>${xmemcached-provider.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.simple-spring-memcached</groupId>
+			<artifactId>spymemcached-provider</artifactId>
+			<version>${spymemcached-provider.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.simple-spring-memcached</groupId>
+			<artifactId>simple-spring-memcached</artifactId>
+			<version>${simple-spring-memcached.version}</version>
+		</dependency>
+
+	</dependencies>
+</project>
