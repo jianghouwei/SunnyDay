@@ -4,14 +4,12 @@ import net.spy.memcached.MemcachedClient;
 
 import org.springframework.stereotype.Service;
 
-import com.sun.istack.internal.NotNull;
 import com.sun.memcached.model.User;
 import com.sun.memcached.service.SpyUserService;
 
 @Service
 public class SpyUserServiceImpl implements SpyUserService {
 
-	@NotNull
 	private MemcachedClient mcmcacheClient;
 
 	public void saveUser(User user) {

@@ -28,7 +28,7 @@
 		<property name="useNagleAlgorithm" value="false"/>  -->
 	</bean> 
 		  
-	<bean id="spyTwoUserService" class="com.ibs.zj.mem.service.impl.SpyTwoUserServiceImpl">
+	<bean id="spyTwoUserService" class="com.sun.memcached.service.impl.SpyTwoUserServiceImpl">
 		<property name="twomcacheClient" ref="spyTmemcachedClient"></property>
 	</bean>	  
 

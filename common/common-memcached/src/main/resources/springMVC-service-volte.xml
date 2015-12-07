@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<!-- 扫描com.ibs.oa.biz.impl包下所有标注@Service的服务组件 -->
-	<context:component-scan base-package="com.ibs.zj.mem.service"/>
+	<context:component-scan base-package="com.sun.memcached.service"/>
 	
 	<!--
 			配置事务管理器，注意这里的dataSource和SqlSessionFactoryBean的dataSource要一致，不然事务就没有作用了

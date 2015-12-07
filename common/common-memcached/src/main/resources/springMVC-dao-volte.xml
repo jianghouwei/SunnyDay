@@ -10,7 +10,7 @@
 		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	<!-- 扫描com.ibs.volteplatform.dao包下所有标注@Repository的DAO组件 -->
-	<context:component-scan base-package="com.ibs.zj.mem.dao"/>
+	<context:component-scan base-package="com.sun.memcached.dao"/>
     
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		init-method="createDataSource" destroy-method="close">
@@ -26,11 +26,11 @@
 	<!-- 配置SqlSessionFactoryBean -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="configLocation" value="classpath:/mybatis/mybatis-config.xml" /> 
+		<property name="configLocation" value="classpath:mybatis-config.xml" /> 
 		<property name="mapperLocations">
             <list>
                 <!-- sqlmap以下所有目录中，以mapper.xml结尾所有文件 -->
-                <value>classpath*:sqlmap/**/*mapper.xml</value>
+                <value>classpath*:*mapper.xml</value>
             </list>
         </property>
 	</bean>

@@ -24,7 +24,7 @@
 	<bean id="serialTranscoder" class="net.spy.memcached.transcoders.SerializingTranscoder" 
 		  p:compressionThreshold="2048" />
 		  
-	<bean id="spyUserService" class="com.ibs.zj.mem.service.impl.SpyUserServiceImpl">
+	<bean id="spyUserService" class="com.sun.memcached.service.impl.SpyUserServiceImpl">
 		<property name="mcmcacheClient" ref="spyMemcached"></property>
 	</bean>	  
 
