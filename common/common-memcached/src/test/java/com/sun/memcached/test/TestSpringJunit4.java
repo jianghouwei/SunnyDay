@@ -11,7 +11,7 @@ import com.sun.memcached.model.User;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath*:applicationContext*.xml"})
+@ContextConfiguration(locations={"classpath*:applicationContext-*.xml"})
 public class TestSpringJunit4 {
 
 	@Test

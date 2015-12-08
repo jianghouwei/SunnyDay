@@ -10,7 +10,7 @@ import com.sun.memcached.model.User;
 import com.sun.memcached.service.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath*:applicationContext*.xml" })
+@ContextConfiguration(locations = { "classpath*:applicationContext-*.xml" })
 public class TestMemCached {
 
 	@Autowired

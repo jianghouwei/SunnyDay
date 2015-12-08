@@ -11,7 +11,7 @@ import com.sun.memcached.service.SpyTwoUserService;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations={"classpath*:applicationContext*.xml"})
+@ContextConfiguration(locations={"classpath*:applicationContext-*.xml"})
 public class TestSpyTMemcached {
 
 	@Autowired

@@ -37,7 +37,7 @@
 		factory-method="build" destroy-method= "shutdown" />  
 	
 	<!-- xmemUserService -->
-	<bean id="xMemUserService" class="com.ibs.zj.mem.service.impl.XMemUserServiceImpl">
+	<bean id="xMemUserService" class="com.sun.memcached.service.impl.XMemUserServiceImpl">
 		<property name="cacheClient" ref="xmemcachedClient"></property>
 	</bean>
 	
