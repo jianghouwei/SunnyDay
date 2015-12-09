@@ -8,6 +8,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>common</module>
+		<module>web</module>
 	</modules>
 	<url>http://maven.apache.org</url>
 	<properties>
